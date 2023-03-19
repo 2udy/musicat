@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 카카오에서 제공받은 id를 통해 member 정보를 가져옴
-    Optional<Member> findByMemberId(long memberId);
+    Optional<Member> findByMemberId(String memberId);
     
 
 

@@ -25,7 +25,7 @@ email
 @ToString
 public class KakaoUserInfoDto {
 
-    private long id;
+    private String id;
     private String nickname;
     private String profileImage;
     private String thumbnailImage;

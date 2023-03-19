@@ -31,7 +31,7 @@ public class Member {
   private long memberSeq;
 
   @Column(name = "member_id")
-  private long memberId;
+  private String memberId;
 
   @Column(name = "member_nickname")
   private String memberNickname;

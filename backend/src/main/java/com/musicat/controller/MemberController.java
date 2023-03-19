@@ -73,7 +73,7 @@ public class MemberController {
         // 응답 데이터를 KakaoUserInfo 클래스와 매핑하여 객체 만들기
         Map<String, Object> responseBody = response.getBody();
 
-        Long id = ((Number) responseBody.get("id")).longValue();
+        String id = responseBody.get("id").toString();
         Map<String, Object> properties = (Map<String, Object>) responseBody.get("properties");
         String nickname = properties.get("nickname").toString();
         String profileImage = properties.get("profile_image").toString();
@@ -93,6 +93,8 @@ public class MemberController {
 
         // 카카오에서 받은 정보를 토대로 로그인 수행
         memberService.kakaoLogin(kakaoUserInfoDto);
+
+
 
 
         // 응답 처리
