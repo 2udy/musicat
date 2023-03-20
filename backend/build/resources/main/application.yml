@@ -9,10 +9,16 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     properties:
       hibernate:
         # show_sql: true
         format_sql: true
+
 server:
   port: 9999
+
+# jwt secret key
+jwt:
+  secret:
+    key: "%C*F-JaNdRgUkXp2s5v8y/A?D(G+KbPeShVmYq3t6w9z$C&E)H@McQfTjWnZr4u7"
