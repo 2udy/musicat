@@ -23,8 +23,9 @@ public class JwtUtil {
 
 
 
-    @Value("${jwt.secret.key}")
+    @Value("${jwt.secret}")
     private String salt;
+
 
     private String secretKey;
 

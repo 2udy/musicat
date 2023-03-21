@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class
 MemberController {
 
-
-
     private final MemberService memberService;
 
     /*
