@@ -1,11 +1,13 @@
 package com.musicat.controller;
 
 import com.musicat.data.dto.MusicInfoDto;
-import com.musicat.data.dto.MusicInsertResponseDto;
+import com.musicat.data.dto.MusicRequestResultDto;
 import com.musicat.data.dto.MusicRequestDto;
+import com.musicat.data.dto.SpotifySearchResultDto;
 import com.musicat.data.entity.Music;
 import com.musicat.service.MusicService;
 import com.sun.jdi.request.DuplicateRequestException;
+import java.sql.SQLOutput;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,10 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/music")
+@RequestMapping("/music")
 @RequiredArgsConstructor
 @CrossOrigin
 public class MusicController {
@@ -28,12 +31,12 @@ public class MusicController {
   private final MusicService musicService;
 
   @PostMapping("/request")
-  public ResponseEntity<MusicInsertResponseDto> insertMusic(
+  public ResponseEntity<MusicRequestResultDto> insertMusic(
       @RequestBody MusicRequestDto musicRequestDto)
       throws Exception {
     try {
-      MusicInsertResponseDto musicInsertResponseDto = musicService.insertMusic(musicRequestDto);
-      return ResponseEntity.ok(musicInsertResponseDto);
+      MusicRequestResultDto musicRequestResultDto = musicService.requestMusic(musicRequestDto);
+      return ResponseEntity.ok(musicRequestResultDto);
     } catch (DuplicateRequestException e) {
       return ResponseEntity.status(HttpStatus.CONFLICT).build();
     } catch (Exception e) {
@@ -43,34 +46,12 @@ public class MusicController {
   }
 
   @GetMapping("/")
-  public ResponseEntity<List<Music>> getRequestMusic() throws Exception {
+  public ResponseEntity<List<MusicInfoDto>> getRequestMusic() throws Exception {
 
-    List<Music> requestMusic = musicService.getMusicInfoList();
+    List<MusicInfoDto> requestMusic = musicService.getMusicInfoList();
 
     try {
       return ResponseEntity.ok(requestMusic);
-    } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
-  }
-
-//  @GetMapping("/play")
-//  public ResponseEntity<MusicPlayDto> playMusic() throws Exception {
-//
-//    MusicPlayDto musicPlayDto = musicService.playMusic();
-//    try {
-//      return ResponseEntity.ok(musicPlayDto);
-//    } catch (Exception e) {
-//      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//    }
-//
-//  }
-
-  @DeleteMapping("/{memberSeq}")
-  public ResponseEntity deleteMusic(@PathVariable long memberSeq) throws Exception {
-    try {
-      musicService.deleteMusic(memberSeq);
-      return ResponseEntity.status(HttpStatus.OK).build();
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
@@ -85,6 +66,12 @@ public class MusicController {
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+  }
+
+  @GetMapping("/search")
+  public List<SpotifySearchResultDto> searchMusic(@RequestParam String queryString)
+      throws Exception {
+    return musicService.searchMusic(queryString);
   }
 
 }

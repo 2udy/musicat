@@ -11,16 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MusicRequestDto {
 
-  private long memberSeq;
-
-  private String musicName;
-
+  private long userSeq;
+  private String musicTitle;
   private String musicArtist;
-
-  private String youtubeVideoId;
-
-  private Long musicLength;
-
-  private String musicCover;
+  private String musicAlbum;
+  private String musicImage;
+  private String musicGenre;
+  private String musicReleaseDate;
 
 }

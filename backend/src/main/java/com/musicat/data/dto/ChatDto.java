@@ -9,12 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MusicModifyResponseDto {
+public class ChatDto {
 
-  public int status;
+  private String sender;
 
-  public MusicInfoDto musicInfoDto;
+  private long userSeq;
 
-  public int playOrder;
+  private String content;
+
+  private String nickname;
 
 }

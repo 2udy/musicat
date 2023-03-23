@@ -1,5 +1,6 @@
 package com.musicat.data.dto;
 
+import com.musicat.data.entity.Music;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MusicCheckDto {
+public class MusicRequestResultDto {
 
-  private long memberSeq;
+  public int status;
 
-  private long musicSeq;
+  public MusicInfoDto musicInfo;
 
-  private int musicOrder;
+  public int playOrder;
 
 }

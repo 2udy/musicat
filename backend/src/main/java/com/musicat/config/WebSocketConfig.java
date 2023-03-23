@@ -18,13 +18,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
   @Override
   public void configureMessageBroker(MessageBrokerRegistry config) {
-    config.enableSimpleBroker("/topic");
+    config.enableSimpleBroker("/topic", "/queue");
     config.setApplicationDestinationPrefixes("/app");
+    config.setUserDestinationPrefix("/user");
   }
 
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
-    registry.addEndpoint("/websocket/music")
+    registry.addEndpoint("/websocket")
         .setAllowedOrigins("http://127.0.0.1:5500") // 프론트엔드 주소를 허용하도록 설정
         .withSockJS();
   }

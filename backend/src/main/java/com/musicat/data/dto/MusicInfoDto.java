@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.asm.Advice.Local;
 
 @Getter
 @NoArgsConstructor
@@ -12,20 +13,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MusicInfoDto {
 
-  private long memberSeq;
-
-  private LocalDateTime musicPlayedAt;
-
-  private LocalDateTime musicCreatedAt;
-
-  private String musicName;
-
+  private long musicSeq;
+  private long userSeq;
+  private String musicTitle;
+  private String musicGenre;
   private String musicArtist;
-
-  private String youtubeVideoId;
-
+  private String musicAlbum;
+  private String musicImage;
+  private String musicYoutubeId;
   private long musicLength;
-
-  private String musicCover;
+  private String musicReleaseDate;
+  private LocalDateTime musicCreatedAt;
+  private boolean musicIsPlayed;
 
 }

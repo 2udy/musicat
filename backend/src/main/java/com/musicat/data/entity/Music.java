@@ -1,5 +1,6 @@
 package com.musicat.data.entity;
 
+import com.sun.istack.NotNull;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,46 +31,60 @@ public class Music {
   @Column(name = "music_seq")
   private long musicSeq;
 
-  @Column(name = "member_seq", nullable = false)
-  private long memberSeq;
+  @Column(name = "user_seq")
+  @NotNull
+  private long userSeq;
 
-  @Column(name = "music_name", nullable = false)
-  private String musicName;
+  @Column(name = "music_title")
+  @NotNull
+  private String musicTitle;
 
-  @Column(name = "music_artist", nullable = false)
+  @Column (name = "music_genre")
+  @NotNull
+  private String musicGenre;
+
+  @Column (name = "music_artist")
+  @NotNull
   private String musicArtist;
 
-  @Column(name = "music_length", nullable = false)
+  @Column (name = "music_album")
+  @NotNull
+  private String musicAlbum;
+
+  @Column (name = "music_image")
+  private String musicImage;
+
+  @Column (name = "music_youtube_id")
+  @NotNull
+  private String musicYoutubeId;
+
+  @Column (name = "music_length")
+  @NotNull
   private long musicLength;
 
-  @Column(name = "music_cover", nullable = false)
-  private String musicCover;
+  @Column (name = "music_intro")
+  private String musicIntro;
 
-  @Column(name = "music_played_at")
-  private LocalDateTime musicPlayedAt;
+  @Column (name = "music_outro")
+  private String musicOutro;
 
-  @Column(name = "music_played_ms")
-  private long musicPlayedMs;
-
-  @Column(name = "youtube_video_id")
-  private String youtubeVideoId;
+  @Column (name = "music_release_date")
+  private String musicReleaseDate;
 
   @CreatedDate
   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   @Column(name = "music_created_at")
   private LocalDateTime musicCreatedAt;
 
-  @Column(name = "music_is_played", columnDefinition = "TINYINT(1)")
-  private boolean musicIsPlayed;
+  @Column(name = "music_played", columnDefinition = "TINYINT(1)")
+  private boolean musicPlayed;
 
 
   @PrePersist
   public void prePersist() {
     LocalDateTime now = LocalDateTime.now();
     this.musicCreatedAt = now;
-    this.musicPlayedAt = null;
-    this.musicPlayedMs = 0L;
-    this.musicIsPlayed = false;
+    this.musicPlayed = false;
   }
 
 }
