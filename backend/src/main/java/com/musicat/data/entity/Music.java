@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -23,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Builder
 public class Music {
 
@@ -78,13 +81,5 @@ public class Music {
 
   @Column(name = "music_played", columnDefinition = "TINYINT(1)")
   private boolean musicPlayed;
-
-
-  @PrePersist
-  public void prePersist() {
-    LocalDateTime now = LocalDateTime.now();
-    this.musicCreatedAt = now;
-    this.musicPlayed = false;
-  }
 
 }

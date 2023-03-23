@@ -1,4 +1,4 @@
-package com.musicat.data.dto.story;
+package com.musicat.data.dto.alert;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class StoryInsertResponseDto {
+public class AlertModifyRequestDto {
 
+    private long alertSeq;
 
-    private StoryInfoDto storyInfoDto;
-
-    private int playOrder;
+    private boolean alertIsRead;
 
 }
