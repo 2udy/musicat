@@ -14,8 +14,8 @@ export const YoutubePlay = () => {
         controls
         playing={true}
         volume={volume}
-        width="1px"
-        height="1px"
+        width="100px"
+        height="100px"
       />
       ;
     </div>

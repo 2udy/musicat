@@ -22,6 +22,7 @@ export const SongList = () => {
   const onSongDetail = (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.value;
     const song = JSON.parse(value);
+    console.log(song);
     setSelectedSong(song);
     setIsSongDetailModalOpen(true);
   };
@@ -59,16 +60,17 @@ export const SongList = () => {
     </div>
   ));
 
-  const songDetailModal = selectedSong ? (
-    <SongDetailModal song={selectedSong} />
-  ) : null;
-
+  // const songDetailModal = selectedSong ? (
+  //   <SongDetailModal musicSeq={selectedSong.musicSeq} />
+  // ) : (
+  //   <></>
+  // );
   return (
     <>
       <div>{songList}</div>
-      {isSongDetailModalOpen && (
+      {isSongDetailModalOpen && selectedSong != undefined && (
         <Modal setModalOpen={setIsSongDetailModalOpen}>
-          <div>{songDetailModal}</div>
+          <SongDetailModal musicSeq={selectedSong.musicSeq} />
         </Modal>
       )}
     </>
